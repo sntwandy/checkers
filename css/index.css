@@ -2,7 +2,23 @@ body {
   background-color: #cccccc;
 }
 
+#container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 899px;
+}
+
 .square {
   width: 100px;
   height: 100px;
+}
+
+.black {
+  background-color: #000
+}
+
+.white {
+  background-color: #fff
 }
