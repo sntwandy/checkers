@@ -103,7 +103,11 @@ const possibleMoves = (pieceId) => {
       const node = document.getElementsByClassName(`square ${row + 1}${moveOne}`)
       const node2 = document.getElementsByClassName(`square ${row + 1}${moveSec}`)
       node[0].id = node[0].childNodes.length ? 'borderRed' : 'borderGreen'
-      node2[0].id = node[0].childNodes.length ? 'borderRed' : 'borderGreen'
+      node2[0].id = node2[0].childNodes.length ? 'borderRed' : 'borderGreen'
+
+      node[0].childNodes.length && possibleJumps(node[0], board[row - 1][col - 1])
+      node2[0].childNodes.length && possibleJumps(node2[0], board[row - 1][col - 1])
+
       setTimeout(() => {
         node[0].id = ''
         node2[0].id = ''
@@ -112,6 +116,9 @@ const possibleMoves = (pieceId) => {
       let moveOne = col === 8 ? col - 1 : col + 1
       const node = document.getElementsByClassName(`square ${row + 1}${moveOne}`)
       node[0].id = node[0].childNodes.length ? 'borderRed' : 'borderGreen'
+
+      node[0].childNodes.length && possibleJumps(node[0], board[row - 1][col - 1])
+
       setTimeout(() => {
         node[0].id = ''
       }, 1000)
@@ -124,6 +131,10 @@ const possibleMoves = (pieceId) => {
       const node2 = document.getElementsByClassName(`square ${row - 1}${moveSec}`)
       node[0].id = node[0].childNodes.length ? 'borderRed' : 'borderGreen'
       node2[0].id = node2[0].childNodes.length ? 'borderRed' : 'borderGreen'
+
+      node[0].childNodes.length && possibleJumps(node[0], board[row - 1][col - 1])
+      node2[0].childNodes.length && possibleJumps(node2[0], board[row - 1][col - 1])
+
       setTimeout(() => {
         node[0].id = ''
         node2[0].id = ''
@@ -132,9 +143,42 @@ const possibleMoves = (pieceId) => {
       let moveOne = col === 8 ? col - 1 : col + 1
       const node = document.getElementsByClassName(`square ${row - 1}${moveOne}`)
       node[0].id = node[0].childNodes.length ? 'borderRed' : 'borderGreen'
+
+      node[0].childNodes.length && possibleJumps(node[0], board[row - 1][col - 1])
+
       setTimeout(() => {
         node[0].id = ''
       }, 1000)
+    }
+  }
+}
+
+// Posible Jumps to each piece
+const possibleJumps = (piece, befPiece) => {
+console.log(befPiece)
+const row = parseInt(befPiece.id.split('')[0])
+const col = parseInt(befPiece.id.split('')[1])
+
+console.log(col, row)
+  if (befPiece.occupiedBy === "white") {
+    if (piece.childNodes[0].classList[0] !== 'white') {
+      const node = document.getElementsByClassName(`square ${row + 2}${col - 2}`)
+      node[0].id = 'borderGreen'
+      piece.id = 'borderOrange'
+      setTimeout(() => {
+        node[0].id = ''
+        piece.id = ''
+      }, 1500)
+    }
+  } else {
+    if (piece.childNodes[0].classList[0] !== 'red') {
+      const node = document.getElementsByClassName(`square ${row - 2}${col - 2}`)
+      node[0].id = 'borderGreen'
+      piece.id = 'borderOrange'
+      setTimeout(() => {
+        node[0].id = ''
+        piece.id = ''
+      }, 1500)
     }
   }
 }
