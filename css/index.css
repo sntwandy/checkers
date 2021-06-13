@@ -52,5 +52,9 @@ body {
 }
 
 #borderGreen {
-  border: 1px solid #2bff00;
+  background-color: #2bff00;
+}
+
+#borderRed {
+  background-color: #ff0000;
 }
