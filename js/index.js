@@ -104,26 +104,35 @@ const possibleMoves = (pieceId) => {
       const node2 = document.getElementsByClassName(`square ${row + 1}${moveSec}`)
       node[0].id = node[0].childNodes.length ? 'borderRed' : 'borderGreen'
       node2[0].id = node2[0].childNodes.length ? 'borderRed' : 'borderGreen'
+      setTimeout(() => {
+      node[0].id = ''
+      node2[0].id = ''
+    }, 1500)
 
       if (!node[0].childNodes.length) {
+
         node[0].addEventListener('click', (e) => {
           document.getElementsByClassName(`${row}${col}`)[0].removeChild(document.getElementsByClassName(`white ${row}${col}`)[0])
           node[0].removeEventListener('click', (e) => {})
           const ele = document.createElement('div')
           ele.className = `white ${row + 1}${moveOne}`
+          board[row][col].occupiedBy = 'none'
+          board[row + 1][moveOne].occupiedBy = 'white'
           node[0].appendChild(ele)
           node[0].addEventListener('click', (e) => {
                   possibleMoves(e.target.parentElement.classList[2])
                 })
-          node[0].id = ''
-          node2[0].id = ''
+                console.log(board)
         })
-      } else {
-        node[0].id = ''
-          node2[0].id = ''
       }
 
+
       if (!node2[0].childNodes.length) {
+        setTimeout(() => {
+      node[0].id = ''
+      node2[0].id = ''
+    }, 1500)
+
         node2[0].addEventListener('click', (e) => {
           document.getElementsByClassName(`${row}${col}`)[0].removeChild(document.getElementsByClassName(`white ${row}${col}`)[0])
           node2[0].removeEventListener('click', (e) => {})
@@ -133,12 +142,7 @@ const possibleMoves = (pieceId) => {
           node2[0].addEventListener('click', (e) => {
                   possibleMoves(e.target.parentElement.classList[2])
                 })
-          node2[0].id = ''
-          node[0].id = ''
         })
-      } else {
-        node[0].id = ''
-          node2[0].id = ''
       }
       node[0].childNodes.length && possibleJumps(node[0], board[row - 1][col - 1])
       node2[0].childNodes.length && possibleJumps(node2[0], board[row - 1][col - 1])
@@ -147,6 +151,11 @@ const possibleMoves = (pieceId) => {
       let moveOne = col === 8 ? col - 1 : col + 1
       const node = document.getElementsByClassName(`square ${row + 1}${moveOne}`)
       node[0].id = node[0].childNodes.length ? 'borderRed' : 'borderGreen'
+      setTimeout(() => {
+      node[0].id = ''
+      node2[0].id = ''
+    }, 1500)
+
       node[0].addEventListener('click', (e) => {
           document.getElementsByClassName(`${row}${col}`)[0].removeChild(document.getElementsByClassName(`white ${row}${col}`)[0])
           node[0].removeEventListener('click', (e) => {})
@@ -156,13 +165,10 @@ const possibleMoves = (pieceId) => {
           node[0].addEventListener('click', (e) => {
                   possibleMoves(e.target.parentElement.classList[2])
                 })
-          node[0].id = ''
-          node2[0].id = ''
         })
 
       node[0].childNodes.length && possibleJumps(node[0], board[row - 1][col - 1])
     }
-
 
 
   } else {
@@ -174,6 +180,10 @@ const possibleMoves = (pieceId) => {
       const node2 = document.getElementsByClassName(`square ${row - 1}${moveSec}`)
       node[0].id = node[0].childNodes.length ? 'borderRed' : 'borderGreen'
       node2[0].id = node2[0].childNodes.length ? 'borderRed' : 'borderGreen'
+      setTimeout(() => {
+      node[0].id = ''
+      node2[0].id = ''
+    }, 1500)
 
       if (!node[0].childNodes.length) {
         node[0].addEventListener('click', (e) => {
@@ -188,9 +198,6 @@ const possibleMoves = (pieceId) => {
           node[0].id = ''
           node2[0].id = ''
         })
-      } else {
-        node[0].id = ''
-          node2[0].id = ''
       }
 
       if (!node2[0].childNodes.length) {
@@ -203,12 +210,7 @@ const possibleMoves = (pieceId) => {
           node2[0].addEventListener('click', (e) => {
                   possibleMoves(e.target.parentElement.classList[2])
                 })
-          node2[0].id = ''
-          node[0].id = ''
         })
-      } else {
-        node[0].id = ''
-          node2[0].id = ''
       }
       node[0].childNodes.length && possibleJumps(node[0], board[row - 1][col - 1])
       node2[0].childNodes.length && possibleJumps(node2[0], board[row - 1][col - 1])
