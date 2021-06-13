@@ -5,12 +5,14 @@ const container = document.querySelector('#container');
 const board = []
 const paintBoard = []
 
+// Create the checker board array
 const createCheckerBoard = () => {
-  for (let i = 0; i < 8; i++) {
+  for (let row = 1; row < 9; row++) {
     let arr = []
-    for (let j = 0; j < 8; j++) {
+    for (let col = 1; col < 9; col++) {
       arr.push({
-        id: `${i}${j}`,
+        id: `${row}${col}`,
+        movement: `${col % 2 === 0  ? row % 2 === 0 ? true : false : row % 2 !== 0 ? true : false}`
       })
     }
     board.push({
@@ -19,15 +21,27 @@ const createCheckerBoard = () => {
   }
 }
 
+// Paint the checker board in the browser
 const paintCheckerBoard = () => {
-  for (let i = 0; i < 8; i++) {
-    for (let j = 0; j < 8; j++) {
+  for (let row = 1; row < 9; row++) {
+    const rowContainer = document.createElement('div')
+    rowContainer.id = 'container'
+    rowContainer.className = `row${row}`
+    for (let col = 1; col < 9; col++) {
       const node = document.createElement('div')
-      j % 2 === 0 ? node.className = i % 2 == 0 ? 'black square' : 'white square' : node.className = i % 2 !== 0 ? 'black square' : 'white square'
-      container.appendChild(node)
+      col % 2 === 0 ? node.className = row % 2 == 0
+        ? `brown square ${row}${col}`
+        : `ligth-brown square ${row}${col}`
+        : node.className = row % 2 !== 0
+          ? `brown square ${row}${col}`
+          : `ligth-brown square ${row}${col}`
+      rowContainer.appendChild(node)
     }
+    container.appendChild(rowContainer)
   }
 }
 
 createCheckerBoard()
 paintCheckerBoard()
+
+console.log(board)
