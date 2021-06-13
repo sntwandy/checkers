@@ -85,7 +85,7 @@ const initializePieces = () => {
   possibleMoves()
 }
 
-// Posibles Movements to each piece
+// Posibles Movements to each piece and movements valid to each color
 const possibleMoves = (pieceId) => {
 
   let color = 'white'
