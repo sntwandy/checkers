@@ -2,23 +2,51 @@ body {
   background-color: #cccccc;
 }
 
-#container {
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 899px;
+  /* max-width: 899px; */
 }
 
 .square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100px;
   height: 100px;
 }
 
 .brown {
-  background-color: #ce9655
+  background-color: #ce9655;
 }
 
 .ligth-brown {
-  background-color: #ffe1cb
+  background-color: #ffe1cb;
+}
+
+.red {
+  background-color: #ff0000;
+  width: 60px;
+  height: 60px;
+  border: solid 2px #000;
+  border-radius: 50%;
+}
+
+.white {
+  background-color: #fff;
+  width: 60px;
+  height: 60px;
+  border: solid 2px #000;
+  border-radius: 50%;
+}
+
+.star-game {
+  width:100px;
+  height:50px;
+  font-size:16px;
+  font-weight: 600;
+  border-radius: 5px;
+  border: 1px solid #a0a0a0;
 }
