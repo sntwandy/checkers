@@ -50,3 +50,7 @@ body {
   border-radius: 5px;
   border: 1px solid #a0a0a0;
 }
+
+#borderGreen {
+  border: 1px solid #2bff00;
+}

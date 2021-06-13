@@ -45,6 +45,9 @@ const paintCheckerBoard = () => {
 // Add each piece in the right place of the checker board
 const addPiece = (row, col, color) => {
   const piece = document.createElement('div')
+  piece.addEventListener('click', (e) => {
+    possibleMoves(e.target.parentElement.classList[2])
+  })
   piece.className = color
   const container = document.getElementsByClassName(`${row}${col}`)
   row % 2 !== 0 ? col % 2 !== 0 && (
@@ -79,6 +82,60 @@ const initializePieces = () => {
     starGame = true
   }
   console.log(board)
+  possibleMoves()
+}
+
+// Posibles Movements to each piece
+const possibleMoves = (pieceId) => {
+
+  let color = 'white'
+  const row = parseInt(pieceId.split('')[0])
+  const col = parseInt(pieceId.split('')[1])
+
+  board[row - 1][col - 1].occupiedBy === 'red' ? (color='red') : (color='white')
+
+  if (color === 'white') {
+    if (col >= 2 && col <= 7) {
+      let moveOne = col - 1
+      let moveSec = col + 1
+      const node = document.getElementsByClassName(`square ${row + 1}${moveOne}`)
+      const node2 = document.getElementsByClassName(`square ${row + 1}${moveSec}`)
+      node[0].id = 'borderGreen'
+      node2[0].id = 'borderGreen'
+      setTimeout(() => {
+        node[0].id = ''
+        node2[0].id = ''
+      }, 1000)
+    } else {
+      let moveOne = col === 8 ? col - 1 : col + 1
+      const node = document.getElementsByClassName(`square ${row + 1}${moveOne}`)
+      node[0].id = 'borderGreen'
+      setTimeout(() => {
+        node[0].id = ''
+      }, 1000)
+    }
+  } else {
+    if (col >= 2 && col <= 7) {
+      let moveOne = col - 1
+      let moveSec = col + 1
+      const node = document.getElementsByClassName(`square ${row - 1}${moveOne}`)
+      const node2 = document.getElementsByClassName(`square ${row - 1}${moveSec}`)
+      node[0].id = 'borderGreen'
+      node2[0].id = 'borderGreen'
+      setTimeout(() => {
+        node[0].id = ''
+        node2[0].id = ''
+      }, 1000)
+    } else {
+      let moveOne = col === 8 ? col - 1 : col + 1
+      const node = document.getElementsByClassName(`square ${row - 1}${moveOne}`)
+      node[0].id = 'borderGreen'
+      setTimeout(() => {
+        node[0].id = ''
+      }, 1000)
+    }
+  }
+  // console.log(node)
 }
 
 createCheckerBoard()
